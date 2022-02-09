@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Person from "./Person";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+	toggleVisibility = () => {
+		this.setState({ isVisible: !this.state.isVisible });
+	};
+	state = {
+    isVisible: false,
+		Person: {
+			fullNAME:  "ZIDI Salim",
+			bio:
+					"Your life becomes a masterpiece when you learn to master peace ..",
+			profession: "Full Stack JS Developer.",
+		},
+		show: false,
+	};
+
+	render() {
+		return (
+			<div className="App">
+        
+				{this.state.isVisible && (
+					<Person Person={this.state.Person}>
+						<img src={"sss.jpg"} alt="profile" width={"400px"} />
+					</Person>
+				)}
+        <button
+						onClick={this.toggleVisibility}
+						className="visibility-btn"
+					>
+						{this.state.isVisible ? "Hide Person" : "Show Person"}
+					</button>
+			
+			</div>
+		);
+	}
 }
 
 export default App;
